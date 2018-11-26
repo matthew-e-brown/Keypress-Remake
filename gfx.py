@@ -9,14 +9,14 @@ def keys(keyboard, color = LIGHTGREEN, correct = None, corcolor = LIGHTRED):
 
     for row, keys in keyboard.items():
         for i, key in enumerate(keys):
-            keycolor = corcolor if key == correct else color
+            if type(correct) != list: keycolor = corcolor if key == correct else color
+            else: keycolor = corcolor if key in correct else color
             x = (28 * row) + (56 * i)
             y = 56 * row
             pygame.draw.rect(surf, keycolor, [x, y, 52, 52])
             if key == 'f' or key == 'j':
                 linecolor = tuple([min(255, max(0, c-85)) for c in keycolor])
                 pygame.draw.line(surf, linecolor, (x + 8, y + 42), (x + 44, y + 42), 2)
-
     return surf
 
 def timer(elapse, maxTime, radius = 80, innercolor = LIGHTRED, outercolor = DARKRED):
@@ -28,9 +28,9 @@ def timer(elapse, maxTime, radius = 80, innercolor = LIGHTRED, outercolor = DARK
     cx = radius
     cy = radius
     points = [(cx, cy)]
-    for i in range(angle, 360):
-        x = cx + int((radius - 3) * math.cos(math.radians(i-90)))
-        y = cy + int((radius - 3) * math.sin(math.radians(i-90)))
+    for i in range(angle, 720):
+        x = cx + int((radius - 3) * math.cos(math.radians((i*0.5)-90)))
+        y = cy + int((radius - 3) * math.sin(math.radians((i*0.5)-90)))
         points.append((x, y))
 
     pygame.gfxdraw.aacircle(surf, cx, cy, radius, outercolor)
@@ -38,7 +38,6 @@ def timer(elapse, maxTime, radius = 80, innercolor = LIGHTRED, outercolor = DARK
     if len(points) > 2:
         pygame.gfxdraw.aapolygon(surf, points, innercolor)
         pygame.gfxdraw.filled_polygon(surf, points, innercolor)
-
     return surf
 
 def lifebar(height, width, mistakes, maxAllowed):
