@@ -1,5 +1,5 @@
 # Keypress Game, Remade
-Recreating my Grade 11 culminating project with more Pythonic code and some OOP.
+Recreating my Grade 11 culminating project with more Pythonic code ~and some OOP~.
 
 The original project, which I lovingly named ["Keypress Game,"](https://github.com/matthew-e-brown/Grade-11-Python-CCA) was written between the dates of April 10<sup>th</sup> to June 15<sup>th</sup>, 2017. It was inspired by [Nerd<sup>3</sup>'s game, Systems Nominal](https://www.nerdcubed.co.uk/games/), which it is very similar to. 
 
