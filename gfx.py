@@ -24,7 +24,7 @@ def timer(elapse, maxTime, radius = 80, innercolor = LIGHTRED, outercolor = DARK
     surf.fill(KEYOUT)
     surf.set_colorkey(KEYOUT)
 
-    angle = int(elapse / maxTime * 360)
+    angle = int(elapse / maxTime * 720)
     cx = radius
     cy = radius
     points = [(cx, cy)]

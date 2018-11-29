@@ -1,0 +1,42 @@
+[
+  {
+    "amount": 100,
+    "name": "AAA"
+  },
+  {
+    "amount": 90,
+    "name": "BBB"
+  },
+  {
+    "amount": 80,
+    "name": "CCC"
+  },
+  {
+    "amount": 70,
+    "name": "DDD"
+  },
+  {
+    "amount": 60,
+    "name": "EEE"
+  },
+  {
+    "amount": 50,
+    "name": "FFF"
+  },
+  {
+    "amount": 40,
+    "name": "GGG"
+  },
+  {
+    "amount": 30,
+    "name": "HHH"
+  },
+  {
+    "amount": 20,
+    "name": "III"
+  },
+  {
+    "amount": 10,
+    "name": "JJJ"
+  }
+]

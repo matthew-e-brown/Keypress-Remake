@@ -1,0 +1,31 @@
+[{
+  "amount": 20000,
+  "name": "AAA"
+}, {
+  "amount": 17500,
+  "name": "BBB"
+}, {
+  "amount": 15000,
+  "name": "CCC"
+}, {
+  "amount": 12500,
+  "name": "DDD"
+}, {
+  "amount": 10000,
+  "name": "EEE"
+}, {
+  "amount": 7500,
+  "name": "FFF"
+}, {
+  "amount": 5000,
+  "name": "GGG"
+}, {
+  "amount": 2500,
+  "name": "HHH"
+}, {
+  "amount": 1000,
+  "name": "III"
+}, {
+  "amount": 500,
+  "name": "JJJ"
+}]

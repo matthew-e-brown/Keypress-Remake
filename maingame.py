@@ -2,7 +2,7 @@
 import pygame, sys, time, random, os
 
 #Import my own files
-import gfx
+import gfx, scores
 from colors import *
 
 ##Initialize
@@ -60,6 +60,8 @@ OpeningScreen = True
 CountDown = False
 MainGame = False
 GameOver = False
+NameScreen = False
+ScoresScreen = False
 
 ##Game State Modifiers - Used to set variables
 First = True
@@ -164,15 +166,49 @@ while True:
 
         ## -- Drawing Code
         screen.blit(gfx.keys(keyboard=KEYBOARD, correct=correctKey), [162, 532]) #Keyboard
+        screen.blit(monitorFont.render("Time:", True, WHITE), [360, 250]) #"Time Left:"
         screen.blit(gfx.timer(elapse=elapsed, maxTime=30, radius=80), [500-80, 260-80]) #Stopwatch
+        screen.blit(monitorFont.render("Mistakes Remaining:", True, WHITE), [250 + (500/100), 365 - (25*2/3)]) #"Mistakes Left:"
         screen.blit(gfx.lifebar(width=500, height=25, mistakes=strikes, maxAllowed=maxStrikes), [250, 365]) #Healthbar
 
         ## -- Break Conditions
         if elapsed > timer or strikes == maxStrikes:
+            score = (hits * (round(elapsed*1.75)))-(strikes * 100)
             MainGame = False
             First = True
-            pygame.quit()
-            sys.exit()
+            ScoresScreen = True
+
+    elif ScoresScreen: ## ------ HIGH SCORES SCREEN
+        if First:
+            index = scores.insertScore(score=score, name="Test")
+            ## ^This will both insert the score and get the place at which it is in the list
+            SCORES = scores.load()
+            memehack = False
+            First = False
+
+        ## -- Event Detecion
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: pygame.quit(), sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE or event.key == pygame.K_n: pygame.quit(), sys.exit()
+                elif event.key == pygame.K_y:
+                    First = True
+                    OpeningScreen = True
+                    ScoresScreen = False
+                # if event.key == pygame.K_R: First = True, ResetScreen = True
+
+        ## -- Game Logic
+
+        ## -- Drawing Code
+        screen.blit(monitorFont.render(">>> Highscores are:", True, WHITE), [160, 100])
+        for i, line in enumerate(SCORES, 0):
+            if i == index:
+                c = YELLOW
+                font = monitorFontBold
+            else:
+                c = WHITE
+                font = monitorFont
+            screen.blit(font.render(">>> {0:>3} {1:<5} --- {2}".format(str(i + 1) + ".", SCORES[i]['amount'], SCORES[i]['name']), True, c), [160, 140 + (20 * i)])
 
     if memehack: screen.blit(monitorFontBold.render(">>> MEME HACK ACTIVATED", True, RED), [0, 0])
     ## -- Push those commands to the display
