@@ -19,14 +19,16 @@ size    = (WIDTH, HEIGHT)
 screen  = pygame.display.set_mode(size, 0, 32)
 
 pygame.display.set_caption("Keypress Game 2.0")
+icon = pygame.image.load("icon.png")
+pygame.display.set_icon(icon)
 
 clock = pygame.time.Clock()
 
 ##Define some Fonts
-monitorFont         = pygame.font.Font("{0}/fonts/consola.ttf".format(PATH), 17)
-monitorFontBold     = pygame.font.Font("{0}/fonts/consolab.ttf".format(PATH), 17)
-monitorFontBig      = pygame.font.Font("{0}/fonts/consola.ttf".format(PATH), 62)
-monitorFontBigBold  = pygame.font.Font("{0}/fonts/consolab.ttf".format(PATH), 62)
+monitorFont         = pygame.font.Font("{}/fonts/consola.ttf".format(PATH), 17)
+monitorFontBold     = pygame.font.Font("{}/fonts/consolab.ttf".format(PATH), 17)
+monitorFontBig      = pygame.font.Font("{}/fonts/consola.ttf".format(PATH), 62)
+monitorFontBigBold  = pygame.font.Font("{}/fonts/consolab.ttf".format(PATH), 62)
 
 ##Define some Sounds
 wrong = pygame.mixer.Sound("wrong.wav")
@@ -117,7 +119,7 @@ while True:
         ## -- Drawing Code
         screen.blit(gfx.keys(keyboard=KEYBOARD, color=LIGHTRED), [162, 532]) #Keyboard
         rounded = int(((waitTime - elapsed) * 100 + 0.5))/100
-        screen.blit(monitorFont.render(">>> Starting in {0}".format(rounded), True, WHITE), [160, 100])
+        screen.blit(monitorFont.render(">>> Starting in {}".format(rounded), True, WHITE), [160, 100])
         screen.blit(monitorFont.render("seconds.", True, WHITE), [350, 100]) #Done in two lines to fix jitter
 
         ## -- Break Conditions
@@ -165,14 +167,15 @@ while True:
         ## -- Drawing Code
         screen.blit(gfx.keys(keyboard=KEYBOARD, correct=correctKey), [162, 532]) #Keyboard
         screen.blit(monitorFont.render(">>> You have {0:0<5} seconds left!".format(int((timer - elapsed)*100+0.5)/100), True, WHITE), [160, 100])
-        screen.blit(monitorFont.render(">>> You've made {0} {1} so far!".format(strikes, "mistake" if strikes == 1 else "mistakes"), True, WHITE), [160, 120])
+        c = LIGHTRED if strikes == maxStrikes else WHITE
+        screen.blit(monitorFont.render(">>> You've made {0} {1} so far!".format(strikes, "mistake" if strikes == 1 else "mistakes"), True, c), [160, 120])
         screen.blit(monitorFont.render("Time:", True, WHITE), [360, 250]) #"Time Left:"
         screen.blit(gfx.timer(elapse=elapsed, maxTime=timer, radius=80), [500-80, 260-80]) #Stopwatch
         screen.blit(monitorFont.render("Mistakes Remaining:", True, WHITE), [250 + (500/100), 365 - (25*2/3)]) #"Mistakes Left:"
         screen.blit(gfx.lifebar(width=500, height=25, mistakes=strikes, maxAllowed=maxStrikes), [250, 365]) #Healthbar
 
         ## -- Break Conditions
-        if elapsed > timer or strikes == maxStrikes:
+        if elapsed > timer or strikes > maxStrikes:
             score = (hits * (round(elapsed*1.75)))-(strikes * 100)
             MainGame = False
             First = True
@@ -213,7 +216,7 @@ while True:
         screen.blit(monitorFont.render(">>> Your final score is: {}.".format(score), True, c), [160, 240])
         screen.blit(monitorFont.render(">>> You made a total of {0} {1}.".format(strikes, "mistake" if strikes == 1 else "mistakes"), True, WHITE), [160, 180])
         screen.blit(monitorFont.render(">>> Press Space to continue.", True, WHITE), [160, 360])
-        failText = "You made on too many mistakes!" if strikes == maxStrikes else "You're out of time!"
+        failText = "You made one too many mistakes!" if strikes == maxStrikes else "You're out of time!"
         screen.blit(monitorFont.render(failText, True, WHITE), [160, 100])
         if score < 0: screen.blit(monitorFont.render(shametext.format(score), True, WHITE), [160, 260])
 
