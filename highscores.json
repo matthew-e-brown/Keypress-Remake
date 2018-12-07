@@ -1,42 +1,42 @@
 [
   {
-    "amount": 100,
+    "amount": 20000,
     "name": "AAA"
   },
   {
-    "amount": 90,
+    "amount": 17500,
     "name": "BBB"
   },
   {
-    "amount": 80,
+    "amount": 15000,
     "name": "CCC"
   },
   {
-    "amount": 70,
+    "amount": 12500,
     "name": "DDD"
   },
   {
-    "amount": 60,
+    "amount": 10000,
     "name": "EEE"
   },
   {
-    "amount": 50,
+    "amount": 7500,
     "name": "FFF"
   },
   {
-    "amount": 40,
+    "amount": 5000,
     "name": "GGG"
   },
   {
-    "amount": 30,
+    "amount": 2500,
     "name": "HHH"
   },
   {
-    "amount": 20,
+    "amount": 1000,
     "name": "III"
   },
   {
-    "amount": 10,
+    "amount": 500,
     "name": "JJJ"
   }
 ]

@@ -44,5 +44,5 @@ def lifebar(height, width, mistakes, maxAllowed):
     surf = pygame.Surface((width, height))
     pygame.draw.rect(surf, DARKRED, [0, 0, width, height])
     if mistakes <= maxAllowed - 1:
-        pygame.draw.rect(surf, LIGHTRED, [0+1, 0+1, width - (width * mistakes/maxAllowed) - 2, height - 2])
+        pygame.draw.rect(surf, LIGHTRED, [0+2, 0+2, (width - 4) - ((width - 4) * mistakes/maxAllowed), height - 4])
     return surf
